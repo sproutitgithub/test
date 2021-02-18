@@ -642,6 +642,9 @@ Try
         Write-Verbose "Set-location E:\DeploymentShare\Control" -Verbose
         Start-Sleep 1
         Set-Location ..\ 
+        Write-Verbose "Removing customsettings.ini file" -Verbose
+        Start-Sleep 1
+        Remove-Item .\CustomSettings.ini -Force
         Write-Verbose "Copying Over file $($GI3.FullName) to current working directory" -Verbose
         Start-Sleep 1
         Copy-Item $GI3.FullName . -Force

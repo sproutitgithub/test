@@ -644,7 +644,12 @@ Try
         Set-Location ..\ 
         Write-Verbose "Removing customsettings.ini file" -Verbose
         $CSI = Get-ChildItem | ? {$_.Name -match 'CustomSettings.ini'}
-        Remove-Item $CSI.FullName -Force
+        IF ($CSI)
+        {
+            Write-Host "Located CustomSettings.ini file, attempting to remove"
+            Remove-Item $CSI.FullName -Force
+        }
+        dir
         Start-Sleep 10
         Write-Verbose "Copying Over file $($GI3.FullName) to current working directory" -Verbose
         Start-Sleep 1

@@ -52,37 +52,37 @@ Write-verbose "Creating New PSDrive" -verbose
       	foreach ($file in get-childitem "E:\Jenkins\jobs\Test_VDA_Automation\workspace"| ? {$_.Name -match 'Script-'})
       	{
         	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\Scripts\TEST\" -verbose 
-          	#copy-item $File.FullName -destination E:\JenkinsJobs\VDA\Scripts\TEST\
+          	copy-item $File.FullName -destination E:\JenkinsJobs\VDA\Scripts\TEST\
       	}
       
         foreach ($file in get-childitem "E:\Jenkins\jobs\Test_VDA_Automation\workspace"| ? {$_.Name -match 'PVSGen2Function'})
       	{
         	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\Scripts\TEST\" -verbose 
-          	#copy-item $File.FullName -destination E:\JenkinsJobs\VDA\Scripts\TEST\
+          	copy-item $File.FullName -destination E:\JenkinsJobs\VDA\Scripts\TEST\
       	}
 
         foreach ($file in get-childitem "E:\Jenkins\jobs\Test_VDA_Automation\workspace"| ? {$_.Name -match 'DevopsSrcControl'})
       	{
-        	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\Scripts\TEST\" -verbose 
-          	#copy-item $File.FullName -destination E:\JenkinsJobs\VDA\configs\TEST 
+        	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\configs\TEST\" -verbose 
+          	copy-item $File.FullName -destination E:\JenkinsJobs\VDA\configs\TEST 
       	}
       
         foreach ($file in get-childitem "E:\Jenkins\jobs\Test_VDA_Automation\workspace"| ? {$_.Name -match 'MDTDeploy'})
       	{
-        	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\Scripts\TEST\" -verbose 
-          	#copy-item $File.FullName -destination E:\JenkinsJobs\VDA\configs\TEST 
+        	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\configs\TEST\" -verbose 
+          	copy-item $File.FullName -destination E:\JenkinsJobs\VDA\configs\TEST 
       	}
 
         foreach ($file in get-childitem "E:\Jenkins\jobs\Test_VDA_Automation\workspace"| ? {$_.Name -match 'Administrator'})
       	{
-        	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\Scripts\TEST\" -verbose 
-          	#copy-item $File.FullName -destination E:\JenkinsJobs\VDA\configs\TEST 
+        	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\configs\TEST\" -verbose 
+          	#opy-item $File.FullName -destination E:\JenkinsJobs\VDA\configs\TEST 
       	}
 
         foreach ($file in get-childitem "E:\Jenkins\jobs\Test_VDA_Automation\workspace"| ? {$_.Name -match 'customsettings'})
       	{
-        	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\Scripts\TEST\" -verbose 
-          	#copy-item $File.FullName -destination E:\JenkinsJobs\VDA\configs\TEST 
+        	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\configs\TEST\" -verbose 
+          	copy-item $File.FullName -destination E:\JenkinsJobs\VDA\configs\TEST 
       	}
       
     }

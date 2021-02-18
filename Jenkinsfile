@@ -2,15 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Build VDA Test') {
             steps {
-                echo 'Hello World'
+                echo 'Building Test Environment'
                 echo "${env.WORKSPACE}"
             }
         }
+
         stage('Pull Git') {
             steps {
                 PullGit()
+            }
+        }
+        stage('Create Env') {
+            steps {
+                CreateEnv() 
+           // sh 'false'    
             }
         }
         stage('Prepare Env') {
@@ -66,7 +73,23 @@ def PullGit() {
       }
 		
 }
-
+def CreateEnv() {
+    def err = null
+    def pspath0 = "${env.WORKSPACE}\\Create-Environment.ps1"
+      try {
+         echo "About to Launch ${env.WORKSPACE}\\Create-Environment.ps1"
+         sleep 2
+        powershell pspath0
+      } catch(Exception ex) {
+         println(ex.message);
+         if (ex){
+            throw ex
+            println ("Failed in Crrate")
+         }
+      
+      }
+		
+}
 
 def PrepareEnv() {
     def err = null

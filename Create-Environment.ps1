@@ -57,8 +57,8 @@ Write-verbose "Creating New PSDrive" -verbose
       
         foreach ($file in get-childitem "E:\Jenkins\jobs\Test_VDA_Automation\workspace"| ? {$_.Name -match 'PVSGen2Function'})
       	{
-        	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\Scripts\TEST\" -verbose 
-          	copy-item $File.FullName -destination E:\JenkinsJobs\VDA\Scripts\TEST\
+        	Write-verbose "Copy File $($file.Name) to E:\CitrixVDA\PVSGen\TEST\" -verbose 
+          	copy-item $File.FullName -destination E:\CitrixVDA\PVSGen\TEST\
       	}
 
         foreach ($file in get-childitem "E:\Jenkins\jobs\Test_VDA_Automation\workspace"| ? {$_.Name -match 'DevopsSrcControl'})

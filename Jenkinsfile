@@ -8,12 +8,13 @@ pipeline {
                 echo "${env.WORKSPACE}"
             }
         }
-
+        /*
         stage('Pull Git') {
             steps {
                 PullGit()
             }
         }
+        */
         stage('Create Env') {
             steps {
                 CreateEnv() 

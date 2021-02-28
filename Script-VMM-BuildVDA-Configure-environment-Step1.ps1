@@ -332,17 +332,36 @@ Write-Verbose "Check that PVS Script file is most recent" -Verbose
 Start-Sleep 1
 Try
 {
-    $CheckScriptFile = Get-ChildItem | ? {$_.Name -match 'Function.ps1'}
-    IF (!($CheckScriptFile))
-    {
-        Write-Warning "could not obtain PS1 function" -Verbose
-        Exit 1
-    }
-    $CheckScriptFileHash =  (Get-FileHash $CheckScriptFile).hash
-    IF (!($CheckScriptFileHash))
-    {
-        Write-Warning "could not obtain file Hash" -Verbose
-        Exit 1
+
+    $CheckScriptFileHash = 
+    Invoke-Command -ComputerName $NodeToUse -Credential $MyCredential1 {
+        Set-Location C:\Scripts
+        $CheckScriptFile = Get-ChildItem | ? {$_.Name -match 'Function.ps1'}
+        IF (!($CheckScriptFile))
+        {
+            Write-Warning "could not obtain PS1 function" -Verbose
+            Exit 1
+        }
+        ELSE
+        {
+            Write-Verbose "Obtained a PS1 function" -Verbose
+            Start-Sleep 1
+        }
+
+       $CheckScriptFileHash = (Get-FileHash $CheckScriptFile).hash
+        IF (!($CheckScriptFileHash))
+        {
+            Write-Warning "could not obtain file Hash" -Verbose
+            Exit 1
+        }
+        ELSE
+        {
+            Write-Verbose "Obtained a file hash" -Verbose
+            Start-Sleep 1
+            $CheckScriptFileHash
+        }
+            
+        
     }
 }
 Catch
@@ -351,6 +370,7 @@ Catch
     Write-Warning $Err1 -Verbose
     exit 1
 }
+
 Write-Verbose "Compare Both File Hashes" -Verbose
 Start-Sleep 1
 IF (!($CheckScriptFileHash -match $PVSGen2Hash))

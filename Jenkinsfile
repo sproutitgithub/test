@@ -58,7 +58,8 @@ pipeline {
 
 // steps
 // steps
-
+#
+/*
 def PullGit() {
     def err = null
       try {
@@ -73,18 +74,19 @@ def PullGit() {
       }
 		
 }
+*/
 def CreateEnv() {
     def err = null
-    def pspath0 = "${env.WORKSPACE}\\Create-Environment.ps1"
+    def pspath0 = "${env.WORKSPACE}\\Script-VMM-BuildVDA-Create-Environment.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Create-Environment.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-Create-Environment.ps1"
          sleep 2
         powershell pspath0
       } catch(Exception ex) {
          println(ex.message);
          if (ex){
             throw ex
-            println ("Failed in Crrate")
+            println ("Failed in Create")
          }
       
       }
@@ -108,7 +110,7 @@ def PrepareEnv() {
       }
 		
 }
-/*
+
 def BuildEnv() {
     def err = null
         def pspath2 = "${env.WORKSPACE}\\Script-VMM-BuildVDA-Build-Environment.ps1"
@@ -159,7 +161,7 @@ def Config2Env() {
       
       }
 }
-
+/*
 def RemoveEnv() {
     def err = null
         def pspath5 = "${env.WORKSPACE}\\Script-VMM-BuildVDA-Remove-environment.ps1"

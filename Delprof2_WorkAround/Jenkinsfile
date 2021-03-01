@@ -15,44 +15,49 @@ pipeline {
             }
         }
         */
-        stage('Create Env') {
+        stage('Step1') {
             steps {
-                CreateEnv() 
+                Step1() 
            // sh 'false'    
             }
         }
-        stage('Prepare Env') {
+        stage('Step2') {
             steps {
-                PrepareEnv() 
+                Step2() 
            // sh 'false'    
             }
         }
-        stage('Build Env') {
+        stage('Step3') {
             steps {
-                BuildEnv() 
+                Step3() 
            // sh 'false'    
             }
         }
-        stage('Config1 Env') {
+        stage('Step4') {
             steps {
-                Config1Env() 
+                Step4() 
            // sh 'false'    
             }
         }
-        stage('Config2 Env') {
+        stage('Step5') {
             steps {
-                Config2Env() 
+                Step5() 
            // sh 'false'    
             }
         }
-        /*
-        stage('Remove Env') {
+        stage('Step6') {
             steps {
-                RemoveEnv() 
+                Step6() 
            // sh 'false'    
             }
         }
-        */
+        stage('Step7') {
+            steps {
+                Step7() 
+           // sh 'false'    
+            }
+        }
+
     }
 }
 
@@ -77,107 +82,128 @@ def PullGit() {
 		
 }
 */
-def CreateEnv() {
+def Step1() {
     def err = null
-    def pspath0 = "${env.WORKSPACE}\\Script-VMM-BuildVDA-Create-Environment.ps1"
+    def pspath0 = "${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step1.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-Create-Environment.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step1.ps1"
          sleep 2
         powershell pspath0
       } catch(Exception ex) {
          println(ex.message);
          if (ex){
             throw ex
-            println ("Failed in Create")
+            println ("Failed in Step1")
          }
       
       }
 		
 }
 
-def PrepareEnv() {
+def Step2() {
     def err = null
-    def pspath1 = "${env.WORKSPACE}\\Script-VMM-BuildVDA-Prepare-environment.ps1"
+    def pspath0 = "${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step2.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-Prepare-environment.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step2.ps1"
          sleep 2
-        powershell pspath1
+        powershell pspath0
       } catch(Exception ex) {
          println(ex.message);
          if (ex){
             throw ex
-            println ("Failed in Test")
+            println ("Failed in Step2")
          }
       
       }
 		
 }
 
-def BuildEnv() {
+def Step3() {
     def err = null
-        def pspath2 = "${env.WORKSPACE}\\Script-VMM-BuildVDA-Build-Environment.ps1"
+    def pspath0 = "${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step3.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-Build-Environment.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step3.ps1"
          sleep 2
-     powershell pspath2
+        powershell pspath0
       } catch(Exception ex) {
          println(ex.message);
          if (ex){
             throw ex
-            println ("Failed in Build")
+            println ("Failed in Step3")
          }
       
       }
-}
 		
-def Config1Env() {
-    def err = null
-        def pspath3 = "${env.WORKSPACE}\\Script-VMM-BuildVDA-Configure-environment-Step1.ps1"
-      try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-Configure-environment-Step1.ps1"
-         sleep 2
-     powershell pspath3
-      } catch(Exception ex) {
-         println(ex.message);
-         if (ex){
-            throw ex
-            println ("Failed in config1")
-         }
-      
-      }
 }
 
-def Config2Env() {
+def Step4() {
     def err = null
-        def pspath4 = "${env.WORKSPACE}\\Script-VMM-BuildVDA-Configure-environment-Step2.ps1"
+    def pspath0 = "${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step4.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-Configure-environment-Step2.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step4.ps1"
          sleep 2
-     powershell pspath4
+        powershell pspath0
       } catch(Exception ex) {
          println(ex.message);
          if (ex){
             throw ex
-            println ("Failed in config2")
+            println ("Failed in Step4")
          }
       
       }
+		
 }
-/*
-def RemoveEnv() {
+
+def Step5() {
     def err = null
-        def pspath5 = "${env.WORKSPACE}\\Script-VMM-BuildVDA-Remove-environment.ps1"
+    def pspath0 = "${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step5.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-Remove-environment.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step5.ps1"
          sleep 2
-     powershell pspath5
+        powershell pspath0
       } catch(Exception ex) {
          println(ex.message);
          if (ex){
             throw ex
-            println ("Failed in Remove")
+            println ("Failed in Step5")
          }
       
       }
+		
 }
-*/
+
+def Step6() {
+    def err = null
+    def pspath0 = "${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step6.ps1"
+      try {
+         echo "About to Launch ${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step6.ps1"
+         sleep 2
+        powershell pspath0
+      } catch(Exception ex) {
+         println(ex.message);
+         if (ex){
+            throw ex
+            println ("Failed in Step6")
+         }
+      
+      }
+		
+}
+
+def Step7() {
+    def err = null
+    def pspath0 = "${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step7.ps1"
+      try {
+         echo "About to Launch ${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step7.ps1"
+         sleep 2
+        powershell pspath0
+      } catch(Exception ex) {
+         println(ex.message);
+         if (ex){
+            throw ex
+            println ("Failed in Step7")
+         }
+      
+      }
+		
+}

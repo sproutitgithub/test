@@ -27,7 +27,7 @@ Catch
 foreach ($File in Get-ChildItem E:\JenkinsJobs\Configurations\RDSPVS\)
 {
     Write-Verbose "Removing File $($File.name)" -Verbose
-    Remove-Item $File.fullname -WhatIf
+    Remove-Item $File.fullname 
 }
 $ErrorActionPreference="stop"
 Try

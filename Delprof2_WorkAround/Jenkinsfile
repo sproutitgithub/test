@@ -6,6 +6,7 @@ pipeline {
             steps {
                 echo 'Copying over Delprof2 to all RDS PVS Servers'
                 echo "${env.WORKSPACE}"
+                echo "${env.JOB_NAME}"
             }
         }
         /*

@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Copying over Delprof2 to all RDS PVS Servers'
                 echo "${env.WORKSPACE}"
-                echo "${env.JOB_NAME}"
+                echo ""
             }
         }
         /*
@@ -85,9 +85,9 @@ def PullGit() {
 */
 def Step1() {
     def err = null
-    def pspath0 = "${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step1.ps1"
+    def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step1.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step1.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step1.ps1"
          sleep 2
         powershell pspath0
       } catch(Exception ex) {
@@ -103,9 +103,9 @@ def Step1() {
 
 def Step2() {
     def err = null
-    def pspath0 = "${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step2.ps1"
+    def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step2.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step2.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step2.ps1"
          sleep 2
         powershell pspath0
       } catch(Exception ex) {
@@ -121,9 +121,9 @@ def Step2() {
 
 def Step3() {
     def err = null
-    def pspath0 = "${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step3.ps1"
+    def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step3.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step3.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step3.ps1"
          sleep 2
         powershell pspath0
       } catch(Exception ex) {
@@ -139,9 +139,9 @@ def Step3() {
 
 def Step4() {
     def err = null
-    def pspath0 = "${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step4.ps1"
+    def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step4.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step4.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step4.ps1"
          sleep 2
         powershell pspath0
       } catch(Exception ex) {
@@ -157,9 +157,9 @@ def Step4() {
 
 def Step5() {
     def err = null
-    def pspath0 = "${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step5.ps1"
+    def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step5.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step5.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step5.ps1"
          sleep 2
         powershell pspath0
       } catch(Exception ex) {
@@ -175,9 +175,9 @@ def Step5() {
 
 def Step6() {
     def err = null
-    def pspath0 = "${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step6.ps1"
+    def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step6.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step6.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step6.ps1"
          sleep 2
         powershell pspath0
       } catch(Exception ex) {
@@ -193,9 +193,9 @@ def Step6() {
 
 def Step7() {
     def err = null
-    def pspath0 = "${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step7.ps1"
+    def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step7.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-Delprof2-WorkAround-Step7.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step7.ps1"
          sleep 2
         powershell pspath0
       } catch(Exception ex) {

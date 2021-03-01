@@ -1,11 +1,11 @@
 ﻿#region Step 7
 $ErrorActionPreference="silentlycontinue"
-$importRDSDIRSExist = Import-Csv E:\JenkinsJobs\Configurations\RDSPVS\RDSDIREXISTS.csv
+$importRDSDIRSExist = Import-Csv E:\JenkinsConfigurations\Configurations\RDSPVS\RDSDIREXISTS.csv
 IF (!($importRDSDIRSExist))
 {
     exit 1
 }
-$Importcreds = Import-Clixml E:\JenkinsJobs\Configurations\RDSPVS\RDSCreds.xml 
+$Importcreds = Import-Clixml E:\JenkinsConfigurations\Configurations\RDSPVS\RDSCreds.xml 
 $Getcreds = $Importcreds
 IF (!($Importcreds))
 {

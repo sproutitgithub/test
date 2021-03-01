@@ -1,11 +1,11 @@
 ﻿#region Step 6 
 $ErrorActionPreference="silentlycontinue"
-$importRDsPVSTrue = Import-Csv E:\JenkinsJobs\Configurations\RDSPVS\RDSPVSTRUE.csv 
+$importRDsPVSTrue = Import-Csv E:\JenkinsConfigurations\Configurations\RDSPVS\RDSPVSTRUE.csv 
 IF (!($importRDsPVSTrue))
 {
     Exit 1
 }
-$Importcreds = Import-Clixml E:\JenkinsJobs\Configurations\RDSPVS\RDSCreds.xml 
+$Importcreds = Import-Clixml E:\JenkinsConfigurations\Configurations\RDSPVS\RDSCreds.xml 
 $Getcreds = $Importcreds
 IF (!($Importcreds))
 {
@@ -60,5 +60,5 @@ ELSE
         Write-Host $err1 -ForegroundColor Magenta
     }
 }
-$GetDirExists | Export-Csv E:\JenkinsJobs\Configurations\RDSPVS\RDSDIREXISTS.csv -NoTypeInformation
+$GetDirExists | Export-Csv E:\JenkinsConfigurations\Configurations\RDSPVS\RDSDIREXISTS.csv -NoTypeInformation
 #endregion 

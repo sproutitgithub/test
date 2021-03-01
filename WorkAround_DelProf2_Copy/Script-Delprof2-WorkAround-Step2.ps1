@@ -1,6 +1,6 @@
 ﻿#region Step 2
 $ErrorActionPreference="silentlycontinue"
-$importRDs = Get-Content E:\JenkinsJobs\Configurations\RDSPVS\RDSPVS.csv
+$importRDs = Get-Content E:\JenkinsConfigurations\Configurations\RDSPVS\RDSPVS.csv
 
 IF (!($importRDS))
 {
@@ -30,6 +30,6 @@ ELSE
         }
     }
 }
-$CatchAllWSMAN | Export-csv E:\JenkinsJobs\Configurations\RDSPVS\RDSWSMAN.csv -NoTypeInformation
+$CatchAllWSMAN | Export-csv E:\JenkinsConfigurations\Configurations\RDSPVS\RDSWSMAN.csv -NoTypeInformation
 
 #endregion

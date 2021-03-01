@@ -24,7 +24,7 @@ Catch
     exit 1
 }
 
-$importFQDN = Import-Csv E:\JenkinsJobs\Configurations\RDSPVS\RDSPVSFQDNS.csv
+$importFQDN = Import-Csv E:\JenkinsConfigurations\Configurations\RDSPVS\RDSPVSFQDNS.csv
 IF (!($importFQDN))
 {
     exit 1
@@ -55,5 +55,5 @@ ELSE
         }
     }
 }
-$Catchcreds | Export-Clixml E:\JenkinsJobs\Configurations\RDSPVS\RDSCreds.xml 
+$Catchcreds | Export-Clixml E:\JenkinsConfigurations\Configurations\RDSPVS\RDSCreds.xml 
 #endregion 

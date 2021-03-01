@@ -1,6 +1,6 @@
 ﻿#region Step 3
 $ErrorActionPreference="Silentlycontinue"
-$importWSMAN = import-csv E:\JenkinsJobs\Configurations\RDSPVS\RDSWSMAN.csv
+$importWSMAN = import-csv E:\JenkinsConfigurations\Configurations\RDSPVS\RDSWSMAN.csv
 IF (!($importWSMAN))
 {
     exit 1
@@ -35,5 +35,5 @@ ELSE
 }
 $AllSMBCheck = $AllSMBCheck | Sort NAME
 $ActiveComputers = $AllSMBCheck | sort 
-$ActiveComputers | Export-Csv E:\JenkinsJobs\Configurations\RDSPVS\RDSSMB.csv -NoTypeInformation
+$ActiveComputers | Export-Csv E:\JenkinsConfigurations\Configurations\RDSPVS\RDSSMB.csv -NoTypeInformation
 #endregion 

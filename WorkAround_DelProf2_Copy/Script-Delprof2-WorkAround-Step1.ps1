@@ -54,11 +54,11 @@ Start-Sleep 1
         Write-Warning $Err1 -Verbose
         exit 1
     }
-} | Add-Content E:\JenkinsJobs\Configurations\RDSPVS\RDSPVS.csv
-$TP1 = Test-Path E:\JenkinsJobs\Configurations\RDSPVS\RDSPVS.csv 
+} | Add-Content E:\\JenkinsConfigurations\Configurations\RDSPVS\RDSPVS.csv
+$TP1 = Test-Path E:\JenkinsConfigurations\Configurations\RDSPVS\RDSPVS.csv 
 IF ($TP1)
 {
-    $GC1 = Get-Content E:\JenkinsJobs\Configurations\RDSPVS\RDSPVS.csv
+    $GC1 = Get-Content E:\JenkinsConfigurations\Configurations\RDSPVS\RDSPVS.csv
     IF (!($GC1 -match '\.'))
     {
         exit 1
@@ -80,12 +80,12 @@ Start-Sleep 1
         Write-Warning $Err1 -Verbose
         exit 1
     }
-}  | Export-Csv  E:\JenkinsJobs\Configurations\RDSPVS\RDSPVSFQDNS.csv -NoTypeInformation
+}  | Export-Csv  E:\JenkinsConfigurations\Configurations\RDSPVS\RDSPVSFQDNS.csv -NoTypeInformation
 
-$TP2 = Test-Path E:\JenkinsJobs\Configurations\RDSPVS\RDSPVSFQDNS.csv
+$TP2 = Test-Path E:\JenkinsConfigurations\Configurations\RDSPVS\RDSPVSFQDNS.csv
 IF ($TP2)
 {
-    $GC2 = Get-Content E:\JenkinsJobs\Configurations\RDSPVS\RDSPVSFQDNS.csv
+    $GC2 = Get-Content E:\JenkinsConfigurations\Configurations\RDSPVS\RDSPVSFQDNS.csv
     IF (!($GC2 -match 'vmmcluster01'))
     {
         exit 1

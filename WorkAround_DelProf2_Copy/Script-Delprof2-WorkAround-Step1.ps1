@@ -24,10 +24,10 @@ Catch
     exit 1
 }
 
-foreach ($File in Get-ChildItem E:\JenkinsJobs\Configurations\RDSPVS\)
+foreach ($File in Get-ChildItem E:\JenkinsConfigurations\Configurations\RDSPVS\)
 {
     Write-Verbose "Removing File $($File.name)" -Verbose
-    Remove-Item $File.fullname 
+    Remove-Item $File.fullname -force 
 }
 $ErrorActionPreference="stop"
 Try

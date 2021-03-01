@@ -1,6 +1,6 @@
 ﻿#region Step 7
 $ErrorActionPreference="silentlycontinue"
-$importRDSDIRSExist = Import-Csv E:\JenkinsConfigurations\Configurations\RDSPVS\RDSDIREXISTS.csv
+$importRDSDIRSExist = Get-Content E:\JenkinsConfigurations\Configurations\RDSPVS\RDSDIREXISTS.csv
 IF (!($importRDSDIRSExist))
 {
     exit 1
@@ -14,7 +14,7 @@ IF (!($Importcreds))
 ELSE
 {
 
-    $computername = $importRDSDIRSExist.PSComputerName
+    $computername = $importRDSDIRSExist
     foreach ($Computer in $computername)
     {
         foreach ($Cred in $Getcreds)

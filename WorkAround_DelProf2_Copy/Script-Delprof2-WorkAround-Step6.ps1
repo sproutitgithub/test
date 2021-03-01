@@ -1,6 +1,6 @@
 ﻿#region Step 6 
 $ErrorActionPreference="silentlycontinue"
-$importRDsPVSTrue = Import-Csv E:\JenkinsConfigurations\Configurations\RDSPVS\RDSPVSTRUE.csv 
+$importRDsPVSTrue = Get-Content E:\JenkinsConfigurations\Configurations\RDSPVS\RDSPVSTRUE.csv 
 IF (!($importRDsPVSTrue))
 {
     Exit 1
@@ -14,7 +14,7 @@ IF (!($Importcreds))
 ELSE
 {
     $AllRDSGood = 
-    foreach ($thing in $importRDsPVSTrue.PSComputerName)
+    foreach ($thing in $importRDsPVSTrue)
     {
         $thing | ? {$_ -match '\.'}
     }
@@ -34,7 +34,7 @@ ELSE
                         IF (!($GI))
                         {
                             @{
-                                NAME = $env:COMPUTERNAME
+                                NAME = $env:COMPUTERNAME+'.'+$env:USERDNSDOMAIN
                                 EXISTS = "FALSE"
                             }
                             Write-Host "Creating a new directory called c:\_SproutITInstalls\Delprof2" -ForegroundColor Yellow
@@ -45,7 +45,7 @@ ELSE
                         {
                             Write-Host "Directory c:\_SproutITInstalls\Delprof2 already exists" -ForegroundColor Magenta
                             @{
-                                NAME = $env:COMPUTERNAME
+                                NAME = $env:COMPUTERNAME+'.'+$env:USERDNSDOMAIN
                                 EXISTS = "TRUE"
                             }
                         }
@@ -60,5 +60,16 @@ ELSE
         Write-Host $err1 -ForegroundColor Magenta
     }
 }
-$GetDirExists | Export-Csv E:\JenkinsConfigurations\Configurations\RDSPVS\RDSDIREXISTS.csv -NoTypeInformation
+$AllTrue = $GetDirExists  | ? {$_.EXISTS -match 'TRUE'}
+$HashTable = @{}
+$i = 0
+$c = 1
+do {
+$HashTable.Add($c,$AllTrue.values[$i])
+$i+=2
+$c++ 
+}until($C -eq $AllTrue.values.Count /2)
+$CatchAllDirs =  $HashTable.values | select -Unique
+
+$CatchAllDirs | Add-Content E:\JenkinsConfigurations\Configurations\RDSPVS\RDSDIREXISTS.csv 
 #endregion 

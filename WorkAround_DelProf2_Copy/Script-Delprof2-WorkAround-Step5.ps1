@@ -25,6 +25,7 @@ ELSE
 
                 IF ($Computer -match $Cred.UserName.Replace('\scinframanagement',''))
                 {
+
                     Write-Host "Matched $($Computer.name) with $($Cred.UserName.Replace('\scinframanagement',''))" -ForegroundColor Yellow
                     Invoke-Command -ComputerName $Computer.Name -Credential $Cred {
                      $GI = Get-ChildItem c:\ | ? {$_.Name -match 'Personality.'} -ErrorAction SilentlyContinue
@@ -42,6 +43,7 @@ ELSE
                             ISPVS = "FALSE"
                             }
                         }
+
                     }
                 }
             }
@@ -53,5 +55,17 @@ ELSE
         Write-Host $err1 -ForegroundColor Magenta
     }
 }
-$CatchAllPVS | ? {$_.ISPVS -match 'TRUE'} | Export-Csv E:\JenkinsConfigurations\Configurations\RDSPVS\RDSPVSTRUE.csv -NoTypeInformation
+
+
+$AllTrue = $CatchAllPVS  | ? {$_.ISPVS -match 'TRUE'}
+$HashTable = @{}
+$i = 0
+$c = 1
+do {
+$HashTable.Add($c,$AllTrue.values[$i])
+$i+=2
+$c++ 
+}until($C -eq $AllTrue.values.Count /2)
+$CatchAllPVS1 =  $HashTable.values | select -Unique
+$CatchAllPVS1 | Add-Content E:\JenkinsConfigurations\Configurations\RDSPVS\RDSPVSTRUE.csv
 #endregion 

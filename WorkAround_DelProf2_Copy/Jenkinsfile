@@ -64,6 +64,12 @@ pipeline {
            // sh 'false'    
             }
         }
+        stage('Pester') {
+            steps {
+                Pester() 
+           // sh 'false'    
+            }
+        }
     
     }
 }
@@ -216,6 +222,24 @@ def Step7() {
 }
 
 def Step8() {
+    def err = null
+    def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step8.ps1"
+      try {
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Delprof2-WorkAround-Step8.ps1"
+         sleep 2
+        powershell pspath0
+      } catch(Exception ex) {
+         println(ex.message);
+         if (ex){
+            throw ex
+            println ("Failed in Step 8")
+         }
+      
+      }
+		
+}
+
+def Pester() {
     def err = null
     def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Invoke-Pester-Tests.ps1"
       try {

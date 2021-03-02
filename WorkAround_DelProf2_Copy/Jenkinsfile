@@ -58,7 +58,13 @@ pipeline {
            // sh 'false'    
             }
         }
-
+        stage('Step8') {
+            steps {
+                Step8() 
+           // sh 'false'    
+            }
+        }
+    
     }
 }
 
@@ -203,6 +209,24 @@ def Step7() {
          if (ex){
             throw ex
             println ("Failed in Step7")
+         }
+      
+      }
+		
+}
+
+def Step8() {
+    def err = null
+    def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Invoke-Pester-Tests.ps1"
+      try {
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Invoke-Pester-Tests.ps1"
+         sleep 2
+        powershell pspath0
+      } catch(Exception ex) {
+         println(ex.message);
+         if (ex){
+            throw ex
+            println ("Failed in Pester Tests")
          }
       
       }

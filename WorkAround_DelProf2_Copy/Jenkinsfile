@@ -64,12 +64,14 @@ pipeline {
            // sh 'false'    
             }
         }
+        /*
         stage('Pester') {
             steps {
                 Pester() 
            // sh 'false'    
             }
         }
+        */
     
     }
 }
@@ -238,7 +240,7 @@ def Step8() {
       }
 		
 }
-
+/*
 def Pester() {
     def err = null
     def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-Invoke-Pester-Tests.ps1"
@@ -256,3 +258,4 @@ def Pester() {
       }
 		
 }
+*/

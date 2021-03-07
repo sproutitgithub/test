@@ -44,19 +44,36 @@ pipeline {
                 Config2Env() 
            // sh 'false'    
             }
-        }
-        /*
+        } 
         stage('Remove Env') {
             steps {
                 RemoveEnv() 
            // sh 'false'    
             }
         }
-        */
+    
     }
 }
 
+    post {
+        success {
 
+	        //archiveArtifacts "VDA_Test_Build\\TestResultsGood.txt"
+            //archiveArtifacts "VDA_Test_Build\\FinalResults.txt"
+
+	    }
+        failure {
+            
+
+            
+            archiveArtifacts "Dev\\AllResults\\index.html"
+            archiveArtifacts "Dev\\AllResults\\dashboard.html"
+	    }
+        always {
+            echo 'The build has completed'
+        }
+       }
+    }
 
 // steps
 // steps

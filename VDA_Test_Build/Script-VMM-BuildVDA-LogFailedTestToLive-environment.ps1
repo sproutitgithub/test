@@ -250,7 +250,7 @@ Start-Sleep 1
     }
         foreach ($Result in $Results)
     {
-        Write-Verbose "Writing out data to TEST_TO_LIVE that build outcome is successful" -Verbose
+        Write-Verbose "Writing out data to TEST_TO_LIVE that build outcome is Unsuccessful" -Verbose
         Write-SqlTableData -ServerInstance "SQLCluster01" -DatabaseName "Citrix_Image_Automation" `
         -TableName "TEST_TO_LIVE"  -SchemaName dbo -Credential $MyCredential -InputData $Result
     }

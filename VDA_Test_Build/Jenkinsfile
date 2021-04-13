@@ -62,9 +62,11 @@ pipeline {
         success {
 
             echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogGoodBuildOutcome-Environment.ps1"
-            Powershell "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogGoodBuildOutcome-Environment.ps1"
+            //Powershell "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogGoodBuildOutcome-Environment.ps1"
+            LogGoodBuildOutcome() 
             echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogGoodTestToLive-environment.ps1"
-            Powershell  "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogGoodTestToLive-environment.ps1"
+            //Powershell  "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogGoodTestToLive-environment.ps1"
+            LogGoodTestToLive() 
 
 	        //archiveArtifacts "VDA_Test_Build\\TestResultsGood.txt"
             //archiveArtifacts "VDA_Test_Build\\FinalResults.txt"
@@ -73,12 +75,14 @@ pipeline {
         failure {
             
             echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogFailedBuildOutcome-Environment.ps1"
-            Powershell "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogFailedBuildOutcome-Environment.ps1"
+            //Powershell "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogFailedBuildOutcome-Environment.ps1"
+            LogFailedBuildOutcome() 
             echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogFailedTestToLive-environment.ps1"
-            Powershell  "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogFailedTestToLive-environment.ps1"
-            
-            archiveArtifacts "Dev\\AllResults\\index.html"
-            archiveArtifacts "Dev\\AllResults\\dashboard.html"
+            //Powershell  "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogFailedTestToLive-environment.ps1"
+            LogFailedTestToLive()
+
+            archiveArtifacts "Test\\AllResults\\index.html"
+            archiveArtifacts "Tes\\AllResults\\dashboard.html"
 	    }
         always {
             echo 'The build has completed'
@@ -210,3 +214,75 @@ def RemoveEnv() {
       }
 }
 */
+
+def LogGoodBuildOutcome() {
+    def err = null
+    def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogGoodBuildOutcome-Environment.ps1"
+      try {
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogGoodBuildOutcome-Environment.ps1"
+         sleep 2
+        powershell pspath0
+      } catch(Exception ex) {
+         println(ex.message);
+         if (ex){
+            throw ex
+            println ("Failed in Create")
+         }
+      
+      }
+		
+}
+
+def LogGoodTestToLive() {
+    def err = null
+    def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogGoodTestToLive-environment.ps1"
+      try {
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogGoodTestToLive-environment.ps1"
+         sleep 2
+        powershell pspath0
+      } catch(Exception ex) {
+         println(ex.message);
+         if (ex){
+            throw ex
+            println ("Failed in Create")
+         }
+      
+      }
+		
+}
+
+def LogFailedBuildOutcome() {
+    def err = null
+    def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogFailedBuildOutcome-Environment.ps1"
+      try {
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogFailedBuildOutcome-Environment.ps1"
+         sleep 2
+        powershell pspath0
+      } catch(Exception ex) {
+         println(ex.message);
+         if (ex){
+            throw ex
+            println ("Failed in Create")
+         }
+      
+      }
+		
+}
+
+def LogFailedTestToLive() {
+    def err = null
+    def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogFailedTestToLive-environment.ps1"
+      try {
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogFailedTestToLive-environment.ps1"
+         sleep 2
+        powershell pspath0
+      } catch(Exception ex) {
+         println(ex.message);
+         if (ex){
+            throw ex
+            println ("Failed in Create")
+         }
+      
+      }
+		
+}

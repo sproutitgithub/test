@@ -6,6 +6,7 @@ pipeline {
             steps {
                 echo 'Building Test Environment'
                 echo "${env.WORKSPACE}"
+                echo "${env.JOB_NAME}"
             }
         }
         /*
@@ -45,13 +46,14 @@ pipeline {
            // sh 'false'    
             }
         } 
+        /*
         stage('Remove Env') {
             steps {
                 RemoveEnv() 
            // sh 'false'    
             }
         }
-    
+      */
     }
 }
 
@@ -104,9 +106,9 @@ def PullGit() {
 */
 def CreateEnv() {
     def err = null
-    def pspath0 = "${env.WORKSPACE}\\Script-VMM-BuildVDA-Create-Environment.ps1"
+    def pspath0 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-Create-Environment.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-Create-Environment.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-Create-Environment.ps1"
          sleep 2
         powershell pspath0
       } catch(Exception ex) {
@@ -122,9 +124,9 @@ def CreateEnv() {
 
 def PrepareEnv() {
     def err = null
-    def pspath1 = "${env.WORKSPACE}\\Script-VMM-BuildVDA-Prepare-environment.ps1"
+    def pspath1 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-Prepare-environment.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-Prepare-environment.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-Prepare-environment.ps1"
          sleep 2
         powershell pspath1
       } catch(Exception ex) {
@@ -140,9 +142,9 @@ def PrepareEnv() {
 
 def BuildEnv() {
     def err = null
-        def pspath2 = "${env.WORKSPACE}\\Script-VMM-BuildVDA-Build-Environment.ps1"
+        def pspath2 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-Build-Environment.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-Build-Environment.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-Build-Environment.ps1"
          sleep 2
      powershell pspath2
       } catch(Exception ex) {
@@ -157,9 +159,9 @@ def BuildEnv() {
 		
 def Config1Env() {
     def err = null
-        def pspath3 = "${env.WORKSPACE}\\Script-VMM-BuildVDA-Configure-environment-Step1.ps1"
+        def pspath3 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-Configure-environment-Step1.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-Configure-environment-Step1.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-Configure-environment-Step1.ps1"
          sleep 2
      powershell pspath3
       } catch(Exception ex) {
@@ -174,9 +176,9 @@ def Config1Env() {
 
 def Config2Env() {
     def err = null
-        def pspath4 = "${env.WORKSPACE}\\Script-VMM-BuildVDA-Configure-environment-Step2.ps1"
+        def pspath4 = "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-Configure-environment-Step2.ps1"
       try {
-         echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-Configure-environment-Step2.ps1"
+         echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-Configure-environment-Step2.ps1"
          sleep 2
      powershell pspath4
       } catch(Exception ex) {

@@ -1,3 +1,9 @@
+param (
+      [string]$WORKSPACE,
+      [string]$JOB_NAME
+
+)
+
 #region use credentials
 $ErrorActionPreference="Silentlycontinue"
 $Start = Get-Date

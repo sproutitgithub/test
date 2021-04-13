@@ -81,7 +81,7 @@ pipeline {
             echo 'The build has completed'
         }
        }
-    }
+    
 
 // steps
 // steps

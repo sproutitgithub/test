@@ -5,6 +5,7 @@ pipeline {
         stage('Build VDA Test') {
             steps {
                 echo 'Building Test Environment'
+                echo "Path is ${env.WORKSPACE}\\${env.JOB_NAME}"
                 echo "${env.WORKSPACE}"
                 echo "${env.JOB_NAME}"
             }

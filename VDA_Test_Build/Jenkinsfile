@@ -61,10 +61,10 @@ pipeline {
     post {
         success {
 
-            echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-LogGoodBuildOutcome-Environment.ps1"
-            Powershell "${env.WORKSPACE}\\Script-VMM-BuildVDA-LogGoodBuildOutcome-Environment.ps1"
-            echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-LogGoodTestToLive-environment.ps1"
-            Powershell  "${env.WORKSPACE}\\Script-VMM-BuildVDA-LogGoodTestToLive-environment.ps1"
+            echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogGoodBuildOutcome-Environment.ps1"
+            Powershell "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogGoodBuildOutcome-Environment.ps1"
+            echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogGoodTestToLive-environment.ps1"
+            Powershell  "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogGoodTestToLive-environment.ps1"
 
 	        //archiveArtifacts "VDA_Test_Build\\TestResultsGood.txt"
             //archiveArtifacts "VDA_Test_Build\\FinalResults.txt"
@@ -72,10 +72,10 @@ pipeline {
 	    }
         failure {
             
-            echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-LogFailedBuildOutcome-Environment.ps1"
-            Powershell "${env.WORKSPACE}\\Script-VMM-BuildVDA-LogFailedBuildOutcome-Environment.ps1"
-            echo "About to Launch ${env.WORKSPACE}\\Script-VMM-BuildVDA-LogFailedTestToLive-environment.ps1"
-            Powershell  "${env.WORKSPACE}\\Script-VMM-BuildVDA-LogFailedTestToLive-environment.ps1"
+            echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogFailedBuildOutcome-Environment.ps1"
+            Powershell "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogFailedBuildOutcome-Environment.ps1"
+            echo "About to Launch ${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogFailedTestToLive-environment.ps1"
+            Powershell  "${env.WORKSPACE}\\${env.JOB_NAME}\\Script-VMM-BuildVDA-LogFailedTestToLive-environment.ps1"
             
             archiveArtifacts "Dev\\AllResults\\index.html"
             archiveArtifacts "Dev\\AllResults\\dashboard.html"

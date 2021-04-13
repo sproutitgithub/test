@@ -56,7 +56,7 @@ pipeline {
         }
       */
     }
-}
+
 
     post {
         success {
@@ -84,6 +84,7 @@ pipeline {
             echo 'The build has completed'
         }
        }
+    }
     
 
 // steps

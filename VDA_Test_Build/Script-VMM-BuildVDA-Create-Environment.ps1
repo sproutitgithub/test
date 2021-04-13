@@ -1,4 +1,12 @@
-﻿$TP = test-path E:\JenkinsJobs\VDA\Scripts\TEST\
+﻿param (
+      [string]$WORKSPACE,
+      [string]$JOB_NAME
+
+)
+
+Write-verbose "Path is "
+
+$TP = test-path E:\JenkinsJobs\VDA\Scripts\TEST\
 IF (!($TP))
 {
       Write-verbose "Creating a new Directory called E:\JenkinsJobs\VDA\Scripts\TEST" -verbose 
@@ -49,37 +57,37 @@ Write-verbose "Creating New PSDrive" -verbose
     Write-Verbose "Pulling Scripts and configurations from Live" -Verbose
     Try
     {
-      	foreach ($file in get-childitem "E:\Jenkins\jobs\Test_VDA_Automation\workspace"| ? {$_.Name -match 'Script-'})
+      	foreach ($file in get-childitem $WORKSPACE\$JOB_NAME| ? {$_.Name -match 'Script-'})
       	{
         	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\Scripts\TEST\" -verbose 
           	copy-item $File.FullName -destination E:\JenkinsJobs\VDA\Scripts\TEST\
       	}
       
-        foreach ($file in get-childitem "E:\Jenkins\jobs\Test_VDA_Automation\workspace"| ? {$_.Name -match 'PVSGen2Function'})
+        foreach ($file in get-childitem $WORKSPACE\$JOB_NAME| ? {$_.Name -match 'PVSGen2Function'})
       	{
         	Write-verbose "Copy File $($file.Name) to E:\CitrixVDA\PVSGen\TEST\" -verbose 
           	copy-item $File.FullName -destination E:\CitrixVDA\PVSGen\TEST\
       	}
 
-        foreach ($file in get-childitem "E:\Jenkins\jobs\Test_VDA_Automation\workspace"| ? {$_.Name -match 'DevopsSrcControl'})
+        foreach ($file in get-childitem $WORKSPACE\$JOB_NAME| ? {$_.Name -match 'DevopsSrcControl'})
       	{
         	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\configs\TEST\" -verbose 
           	copy-item $File.FullName -destination E:\JenkinsJobs\VDA\configs\TEST 
       	}
       
-        foreach ($file in get-childitem "E:\Jenkins\jobs\Test_VDA_Automation\workspace"| ? {$_.Name -match 'MDTDeploy'})
+        foreach ($file in get-childitem $WORKSPACE\$JOB_NAME| ? {$_.Name -match 'MDTDeploy'})
       	{
         	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\configs\TEST\" -verbose 
           	copy-item $File.FullName -destination E:\JenkinsJobs\VDA\configs\TEST 
       	}
 
-        foreach ($file in get-childitem "E:\Jenkins\jobs\Test_VDA_Automation\workspace"| ? {$_.Name -match 'Administrator'})
+        foreach ($file in get-childitem $WORKSPACE\$JOB_NAME| ? {$_.Name -match 'Administrator'})
       	{
         	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\configs\TEST\" -verbose 
           	copy-item $File.FullName -destination E:\JenkinsJobs\VDA\configs\TEST 
       	}
 
-        foreach ($file in get-childitem "E:\Jenkins\jobs\Test_VDA_Automation\workspace"| ? {$_.Name -match 'customsettings'})
+        foreach ($file in get-childitem $WORKSPACE\$JOB_NAME| ? {$_.Name -match 'customsettings'})
       	{
         	Write-verbose "Copy File $($file.Name) to E:\JenkinsJobs\VDA\configs\TEST\" -verbose 
           	copy-item $File.FullName -destination E:\JenkinsJobs\VDA\configs\TEST 

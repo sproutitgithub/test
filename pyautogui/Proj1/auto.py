@@ -1,20 +1,61 @@
+import ctypes
 import os
 import shutil
 # os.chdir("c:\Anaconda3\Lib\site-packages\pip")
-import time as time 
+import time as time
+from types import ClassMethodDescriptorType 
 import webbrowser as web
 import pyautogui as pag 
 import subprocess as sp
 import pyperclip as pc
 from shutil import copyfile
+import smtplib
+import os  as os 
+from email.message import EmailMessage
+import crypt as crypt
+from ctypes import windll
+user32 = windll.user32
+user32.SetProcessDPIAware()
+imagerootfilepath = 'e:\dailyhostdata'
+autopyusername = "autopy"
+autopypass = 'W3lcomeT0aut0mat1on101'
+outlookusername = "pwaller@sproutit.co.uk"
+outlookurl = "https://login.microsoftonline.com"
+insightsurl = "https://insights.controlup.com/auth"
+grafanurl = "http://infrastructurechecks.sproutcloud.co.uk:3000/login"
 emailpassword = pag.password('Enter password for browsers (text will be hidden)')
 
 
-if os.path.isdir('c:\dailyhostdata'):
+
+####################################################
+####                                            ####
+####                                            ####
+####             Directory data                 ####
+####                                            ####
+####                                            ####
+####################################################
+
+if os.path.isdir(imagerootfilepath):
     "true"
 else:
-    os.mkdir('c:\dailyhostdata')
-web.open("https://Google.com")
+    os.mkdir(imagerootfilepath)
+
+try:
+    web.open("https://Google.com")
+except:
+    ctypes.windll.user32.MessageBoxW(0, "Error loading browser", "Warning!", 16)
+
+    
+
+
+
+####################################################
+####                                            ####
+####                                            ####
+####             Insights data                  ####
+####                                            ####
+####                                            ####
+####################################################
 # sp.call("C:\Program Files\Google\Chrome\Application\chrome.exe")
 time.sleep(2)
 sp.call("C:\Program Files\Google\Chrome\Application\chrome.exe")
@@ -22,12 +63,12 @@ time.sleep(5)
 pag.click(332,50) # click ther tab on chrome to set as browser
 time.sleep(2)
 pag.click(310,50) # click inside search field of chrome 
-pag.write("https://insights.controlup.com/auth")
+pag.write(insightsurl)
 time.sleep(2)
 pag.press(['enter'])
 time.sleep(5)   
 pag.click(837,495) # click in user name field
-pag.write("pwaller@sproutit.co.uk")
+pag.write(outlookusername)
 time.sleep(1)
 pag.press(['enter'])
 time.sleep(2)
@@ -36,7 +77,7 @@ time.sleep(1)
 time.sleep(2)
 # pag.moveTo(330.58)
 pag.click(330,58) # click inside search field of chrome 
-pag.write("https://login.microsoftonline.com")
+pag.write(outlookurl)
 time.sleep(2)
 pag.press(['enter'])
 time.sleep(2)
@@ -95,10 +136,10 @@ pag.click(695,370) # tick third host
 pag.click(695,400) # tick fourth host
 pag.click(768,606) # click ok
 time.sleep(10)
-from ctypes import windll
-user32 = windll.user32
-user32.SetProcessDPIAware()
-pag.screenshot('c:\dailyhostdata\SD-LON1-SD0.png', region=(0,0,1920,1080)) # take screenshot
+# from ctypes import windll
+# user32 = windll.user32
+# user32.SetProcessDPIAware()
+pag.screenshot('e:\dailyhostdata\SD-LON1-SD0.png', region=(0,0,1920,1080)) # take screenshot
 
 # #remove ticks
 pag.click(740,220) # click select host
@@ -126,10 +167,10 @@ pag.click(695,340) # tick second host
 pag.click(695,370) # tick third host
 pag.click(768,606) # click ok
 time.sleep(10)
-from ctypes import windll
-user32 = windll.user32
-user32.SetProcessDPIAware()
-pag.screenshot('c:\dailyhostdata\SD-LON1-VDI0.png', region=(0,0,1920,1080)) # take screenshot
+# from ctypes import windll
+# user32 = windll.user32
+# user32.SetProcessDPIAware()
+pag.screenshot('e:\dailyhostdata\SD-LON1-VDI0.png', region=(0,0,1920,1080)) # take screenshot
 
 # #remove ticks
 pag.click(740,220) # click select host
@@ -161,10 +202,10 @@ pag.click(695,496) # tick seventh host
 time.sleep(1)
 pag.click(768,606) # click ok
 time.sleep(10)
-from ctypes import windll
-user32 = windll.user32
-user32.SetProcessDPIAware()
-pag.screenshot('c:\dailyhostdata\SD-LON1-VH0.png', region=(0,0,1920,1080)) # take screenshot
+# from ctypes import windll
+# user32 = windll.user32
+# user32.SetProcessDPIAware()
+pag.screenshot('e:\dailyhostdata\SD-LON1-VH0.png', region=(0,0,1920,1080)) # take screenshot
 
 # #remove ticks
 pag.click(740,220) # click select host
@@ -196,10 +237,10 @@ pag.click(695,370) # tick third host
 pag.click(695,400) # tick fourth host
 pag.click(768,606) # click ok
 time.sleep(10)
-from ctypes import windll
-user32 = windll.user32
-user32.SetProcessDPIAware()
-pag.screenshot('c:\dailyhostdata\SD-LON2-SD0.png', region=(0,0,1920,1080)) # take screenshot
+# from ctypes import windll
+# user32 = windll.user32
+# user32.SetProcessDPIAware()
+pag.screenshot('e:\dailyhostdata\SD-LON2-SD0.png', region=(0,0,1920,1080)) # take screenshot
 
 #remove ticks
 pag.click(740,220) # click select host
@@ -226,10 +267,10 @@ pag.click(695,400) # tick third host
 pag.click(695,435) # tick fourth host
 pag.click(768,606) # click ok
 time.sleep(10)
-from ctypes import windll
-user32 = windll.user32
-user32.SetProcessDPIAware()
-pag.screenshot('c:\dailyhostdata\SD-VH0X-LON2.png', region=(0,0,1920,1080)) # take screenshot
+# from ctypes import windll
+# user32 = windll.user32
+# user32.SetProcessDPIAware()
+pag.screenshot('e:\dailyhostdata\SD-VH0X-LON2.png', region=(0,0,1920,1080)) # take screenshot
 
 #remove ticks
 pag.click(740,220) # click select host
@@ -257,10 +298,10 @@ pag.click(695,400) # tick fourth host
 pag.click(695,435) # tick fifth host
 pag.click(768,606) # click ok
 time.sleep(10)
-from ctypes import windll
-user32 = windll.user32
-user32.SetProcessDPIAware()
-pag.screenshot('c:\dailyhostdata\SD-VDI0X-LON2.png', region=(0,0,1920,1080)) # take screenshot
+# from ctypes import windll
+# user32 = windll.user32
+# user32.SetProcessDPIAware()
+pag.screenshot('e:\dailyhostdata\SD-VDI0X-LON2.png', region=(0,0,1920,1080)) # take screenshot
 
 #remove ticks
 pag.click(740,220) # click select host
@@ -276,7 +317,121 @@ pag.click(1858,100) # Click to prepare logoff
 pag.click(1750,225) # Click to logoff 
 pag.click(1895,13) # Close browser
 
+####################################################
+####                                            ####
+####                                            ####
+####             Grafana data                   ####
+####                                            ####
+####                                            ####
+####################################################
+time.sleep(2)
+sp.call("C:\Program Files\Google\Chrome\Application\chrome.exe")
+time.sleep(2)
 
+pag.click(332,50) # click ther tab on chrome to set as browser
+time.sleep(1)
+pag.click(310,50) # click inside search field of chrome 
+pag.write(grafanurl)
+time.sleep(2)
+pag.press(['enter'])
+time.sleep(2)
+pag.click(970,410) # click username 
+pag.write(autopyusername)
+pag.click(970,465) # click password
+pag.write(autopypass)
+time.sleep(1)
+pag.click(1000,530) # click login
+# pag.click(['Enter'])
+time.sleep(5)
+pag.click(30,180) # click dashboards
+time.sleep(1)
+pag.click(95,250) # click manage
+time.sleep(1)
+pag.click(700,551) # click summary_configuration
+time.sleep(1)
+pag.click(675,585) # click client_configuration
+time.sleep(5)
+pag.screenshot('e:\dailyhostdata\Client_Summary.png', region=(0,0,1920,1080)) # take screenshot
+pag.click()
+
+pag.click(30,180) # click dashboards
+time.sleep(1)
+pag.click(95,250) # click manage
+time.sleep(1)
+pag.click(700,551) # click summary_configuration
+time.sleep(1)
+pag.click(675,615) # click jenkins_configuration
+time.sleep(5)
+pag.screenshot('e:\dailyhostdata\Jenkins_Summary.png', region=(0,0,1920,1080)) # take screenshot
+
+pag.click(30,180) # click dashboards
+time.sleep(1)
+pag.click(95,250) # click manage
+time.sleep(1)
+pag.click(695,701) # click VMM_configuration_Management
+time.sleep(1)
+pag.click(700,800) # click VMM_configuration
+time.sleep(5)
+pag.screenshot('e:\dailyhostdata\VMM_Configuration.png', region=(0,0,1920,1080)) # take screenshot
+
+pag.click(30,180) # click dashboards
+time.sleep(1)
+pag.click(95,250) # click manage
+time.sleep(1)
+pag.click(700,400) # click HyperV_configuration_Management
+time.sleep(1)
+pag.click(700,425) # click HyperV_configuration
+time.sleep(5)
+pag.screenshot('e:\dailyhostdata\HyperV_Configuration.png', region=(0,0,1920,1080)) # take screenshot
+
+
+pag.click(30,180) # click dashboards
+time.sleep(1)
+pag.click(95,250) # click manage
+time.sleep(1)
+pag.click(700,435) # click hyperV_Performance_Management
+time.sleep(1)
+pag.click(700,465) # click hyperV_Performance_charts
+time.sleep(5)
+pag.screenshot('e:\dailyhostdata\hyperv_perf_chart1.png', region=(0,0,1920,1080)) # take screenshot
+pag.scroll(-150)
+pag.scroll(-150)
+time.sleep(1)
+pag.screenshot('e:\dailyhostdata\hyperv_perf_chart2.png', region=(0,0,1920,1080)) # take screenshot
+time.sleep(1)
+pag.click(25,825) # click user profile icon 
+time.sleep(2)
+pag.click(110,788) # click logoff
+time.sleep(2)
+pag.click(1895,13) # Close browser
+time.sleep(2)
+
+####################################################
+####                                            ####
+####                                            ####
+####                Email data                  ####
+####                                            ####
+####                                            ####
+####################################################
+msg=EmailMessage()
+msg['Subject']="Insights Data"
+msg['From']="AutoPy@sproutit.co.uk"
+msg['To']="infrastructure.management@sproutit.co.uk"
+
+
+os.chdir('E://dailyhostdata')
+for i in os.listdir('./'):
+    if i.endswith('.png'):
+        with open(i,"rb") as file:
+            myfile_data = file.read()
+            myfile_name = file.name
+            msg.add_attachment(myfile_data,maintype="application",subtype="octet-stream",filename=myfile_name)
+
+with smtplib.SMTP('vSTMAIL1.london.sprout.local',25) as server:
+    server=smtplib.SMTP('vSTMAIL1.london.sprout.local',25)
+    server.send_message(msg)
+
+print("email Sent!")
 
 
 

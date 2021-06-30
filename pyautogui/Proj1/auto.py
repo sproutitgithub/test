@@ -1,5 +1,4 @@
 import ctypes
-import os
 import shutil
 # os.chdir("c:\Anaconda3\Lib\site-packages\pip")
 import time as time
@@ -12,8 +11,8 @@ from shutil import copyfile
 import smtplib
 import os  as os 
 from email.message import EmailMessage
-import crypt as crypt
 from ctypes import windll
+from cryptography.fernet import Fernet
 user32 = windll.user32
 user32.SetProcessDPIAware()
 imagerootfilepath = 'e:\dailyhostdata'
@@ -23,7 +22,61 @@ outlookusername = "pwaller@sproutit.co.uk"
 outlookurl = "https://login.microsoftonline.com"
 insightsurl = "https://insights.controlup.com/auth"
 grafanurl = "http://infrastructurechecks.sproutcloud.co.uk:3000/login"
-emailpassword = pag.password('Enter password for browsers (text will be hidden)')
+# emailpassword = pag.password('Enter password for browsers (text will be hidden)')
+
+####################################################
+####                                            ####
+####                                            ####
+####              Decrypt data                  ####
+####                                            ####
+####                                            ####
+####################################################
+### load key 
+
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\pyautokey.key', 'rb') as mykey:
+    key = mykey.read()
+
+print(key)
+
+##end load key 
+
+### decrypt file 
+
+f = Fernet(key)
+
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\enc_pass.txt', 'rb') as encrypted_file:
+    encrypted = encrypted_file.read()
+
+decrypted = f.decrypt(encrypted)
+
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\dec_pass.txt', 'wb') as decrypted_file:
+    decrypted_file.write(decrypted)
+
+
+### end decrypt file 
+
+####################################################
+####                                            ####
+####                                            ####
+####             copy password data             ####
+####                                            ####
+####                                            ####
+####################################################
+
+
+os.chdir(r'Y:\\')
+for i in os.listdir('./'):
+    if i == 'dec_pass.txt':
+        print(i)
+        os.system('copy dec_pass.txt dec_new_pass.txt')
+
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\dec_new_pass.txt', 'r') as file:
+    emailpassword=file.read()
+time.sleep(1)
+
+os.remove('dec_pass.txt')
+os.remove('dec_new_pass.txt')
+
 
 
 

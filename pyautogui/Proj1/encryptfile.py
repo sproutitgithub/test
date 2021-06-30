@@ -1,6 +1,6 @@
 ### load key 
 from cryptography.fernet import Fernet
-with open(r'key\\mykey.key', 'rb') as mykey:
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\pyautokey.key', 'rb') as mykey:
     key = mykey.read()
 
 print(key)
@@ -13,12 +13,12 @@ print(key)
 
 f = Fernet(key)
 
-with open(r'protected\\pass.txt', 'rb') as orig_pass:
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\pass.txt', 'rb') as orig_pass:
     original = orig_pass.read()
 
 encrypted = f.encrypt(original)
 
-with open (r'protected\\enc_pass.txt', 'wb') as encrypted_file:
+with open (r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\enc_pass.txt', 'wb') as encrypted_file:
     encrypted_file.write(encrypted)
 
 ###end encrypt file 

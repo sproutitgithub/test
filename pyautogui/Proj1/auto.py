@@ -1,4 +1,15 @@
+#region modules
+
+####################################################
+####                                            ####
+####                                            ####
+####              import modules                ####
+####                                            ####
+####                                            ####
+####################################################
+print("Load modules")
 import ctypes
+import time
 import shutil
 # os.chdir("c:\Anaconda3\Lib\site-packages\pip")
 import time as time
@@ -15,6 +26,20 @@ from ctypes import windll
 from cryptography.fernet import Fernet
 user32 = windll.user32
 user32.SetProcessDPIAware()
+
+#endregion
+
+#region vars
+
+####################################################
+####                                            ####
+####                                            ####
+####              Variables                     ####
+####                                            ####
+####                                            ####
+####################################################
+
+print("Create variables")
 imagerootfilepath = 'e:\dailyhostdata'
 autopyusername = "autopy"
 autopypass = 'W3lcomeT0aut0mat1on101'
@@ -22,8 +47,14 @@ outlookusername = "pwaller@sproutit.co.uk"
 outlookurl = "https://login.microsoftonline.com"
 insightsurl = "https://insights.controlup.com/auth"
 grafanurl = "http://infrastructurechecks.sproutcloud.co.uk:3000/login"
+egurl = "https://vsceg.sproutcloud.local/final/#!"
+egusername = "a-pwaller"
 # emailpassword = pag.password('Enter password for browsers (text will be hidden)')
 
+#endregion
+
+#region decryption
+start = time.time()
 ####################################################
 ####                                            ####
 ####                                            ####
@@ -32,7 +63,7 @@ grafanurl = "http://infrastructurechecks.sproutcloud.co.uk:3000/login"
 ####                                            ####
 ####################################################
 ### load key 
-
+print("Load decryptoin keys and decrypt password files")
 with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\pyautokey.key', 'rb') as mykey:
     key = mykey.read()
 
@@ -44,12 +75,21 @@ print(key)
 
 f = Fernet(key)
 
-with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\enc_pass.txt', 'rb') as encrypted_file:
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\enc_outlookemailpass.txt', 'rb') as encrypted_file:
     encrypted = encrypted_file.read()
 
 decrypted = f.decrypt(encrypted)
 
-with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\dec_pass.txt', 'wb') as decrypted_file:
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\dec_outlookemailpass.txt', 'wb') as decrypted_file:
+    decrypted_file.write(decrypted)
+
+
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\enc_egadminpass.txt', 'rb') as encrypted_file:
+    encrypted = encrypted_file.read()
+
+decrypted = f.decrypt(encrypted)
+
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\dec_egadminpass.txt', 'wb') as decrypted_file:
     decrypted_file.write(decrypted)
 
 
@@ -63,22 +103,54 @@ with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pya
 ####                                            ####
 ####################################################
 
-
+print("copy decrypted files")
 os.chdir(r'Y:\\')
 for i in os.listdir('./'):
-    if i == 'dec_pass.txt':
+    # if i == 'dec_outlookemailpass.txt and dec_egadminpass.txt':
+    if ('dec_outlookemailpass.txt') or ('dec_egadminpass.txt') in i:
         print(i)
-        os.system('copy dec_pass.txt dec_new_pass.txt')
+        os.system('copy dec_outlookemailpass.txt dec_new_outlookemailpass.txt')
+        os.system('copy dec_egadminpass.txt dec_new_egadminpass.txt')
 
-with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\dec_new_pass.txt', 'r') as file:
+print("obtain email password")
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\dec_new_outlookemailpass.txt', 'r') as file:
     emailpassword=file.read()
 time.sleep(1)
 
-os.remove('dec_pass.txt')
-os.remove('dec_new_pass.txt')
+print("obtain eg password")
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\dec_new_egadminpass.txt', 'r') as file:
+    egadminpasword=file.read()
 
+time.sleep(1)
 
+####################################################
+####                                            ####
+####                                            ####
+####             delete decrypt data            ####
+####                                            ####
+####                                            ####
+####################################################
+print("Remove all clear text password data")
+try:
+    os.remove('dec_outlookemailpass.txt')
+except:
+    ctypes.windll.user32.MessageBoxW(0, "cannot delete dec_outlookemailpass.txt", "Warning!", 16)
+try:
+    os.remove('dec_new_outlookemailpass.txt')
+except:
+    ctypes.windll.user32.MessageBoxW(0, "cannot delete dec_new_outlookemailpass.txt", "Warning!", 16)
+try:
+    os.remove('dec_egadminpass.txt')
+except:
+    ctypes.windll.user32.MessageBoxW(0, "cannot delete dec_egadminpass.txt ", "Warning!", 16)
+try:
+    os.remove('dec_new_egadminpass.txt')
+except:
+    ctypes.windll.user32.MessageBoxW(0, "cannot delete dec_new_egadminpass.txt ", "Warning!", 16)
 
+#endregion
+
+#region dir data
 
 ####################################################
 ####                                            ####
@@ -87,20 +159,21 @@ os.remove('dec_new_pass.txt')
 ####                                            ####
 ####                                            ####
 ####################################################
-
+print(f"if {imagerootfilepath} not vaailable then create it")
 if os.path.isdir(imagerootfilepath):
     "true"
 else:
     os.mkdir(imagerootfilepath)
 
+print("Open browser chrome")
 try:
     web.open("https://Google.com")
 except:
     ctypes.windll.user32.MessageBoxW(0, "Error loading browser", "Warning!", 16)
 
-    
+#endregion
 
-
+#region insights
 
 ####################################################
 ####                                            ####
@@ -109,6 +182,7 @@ except:
 ####                                            ####
 ####                                            ####
 ####################################################
+print("open second chrome browser for Insights")
 # sp.call("C:\Program Files\Google\Chrome\Application\chrome.exe")
 time.sleep(2)
 sp.call("C:\Program Files\Google\Chrome\Application\chrome.exe")
@@ -125,6 +199,7 @@ pag.write(outlookusername)
 time.sleep(1)
 pag.press(['enter'])
 time.sleep(2)
+print("open second chrome browser for Outlook")
 sp.call("C:\Program Files\Google\Chrome\Application\chrome.exe")
 time.sleep(1)
 time.sleep(2)
@@ -167,7 +242,7 @@ pag.click(50,843) # click host trends
 time.sleep(5)
 
 
-
+#region SC-LON1-SD0
 
 pag.click(550,220) # click main header drop down for host trends
 time.sleep(1)
@@ -204,7 +279,9 @@ pag.click(695,340) # untick second host
 pag.click(695,370) # untick third host
 pag.click(695,400) # untick fourth host
 
+#endregion 
 
+#region SC-LON1-VDI0
 
 # pag.click(740,220) # click select host
 # time.sleep(1)
@@ -233,8 +310,9 @@ pag.click(695,305) # untick first host
 pag.click(695,340) # untick second host
 pag.click(695,370) # untick third host
 
+#endregion
 
-
+#region SC-LON1-VH0
 
 # pag.click(740,220) # click select host
 # time.sleep(1)
@@ -273,7 +351,9 @@ pag.click(695,435) # untick fifth host
 pag.click(695,465) # untick sixth host
 pag.click(695,496) # untick seventh host
 
+#endregion
 
+#region SC-LON2-SD0
 
 # pag.click(740,220) # click select host
 # time.sleep(1)
@@ -304,6 +384,9 @@ pag.click(695,340) # untick second host
 pag.click(695,370) # untick third host
 pag.click(695,400) # untick fourth host
 
+#endregion
+
+#region SC-VH0
 
 # pag.click(740,220) # click select host
 # time.sleep(1)
@@ -334,6 +417,9 @@ pag.click(695,370) # untick second host
 pag.click(695,400) # untick third host
 pag.click(695,435) # tick fourth host
 
+#endregion
+
+#region SC-VDI0
 
 # pag.click(740,220) # click select host
 # time.sleep(1)
@@ -370,6 +456,11 @@ pag.click(1858,100) # Click to prepare logoff
 pag.click(1750,225) # Click to logoff 
 pag.click(1895,13) # Close browser
 
+#endregion
+
+#endregion
+
+#region grafan
 ####################################################
 ####                                            ####
 ####                                            ####
@@ -377,6 +468,8 @@ pag.click(1895,13) # Close browser
 ####                                            ####
 ####                                            ####
 ####################################################
+
+print("obtain grafana data")
 time.sleep(2)
 sp.call("C:\Program Files\Google\Chrome\Application\chrome.exe")
 time.sleep(2)
@@ -459,6 +552,65 @@ time.sleep(2)
 pag.click(1895,13) # Close browser
 time.sleep(2)
 
+#endregion 
+
+#region eg
+####################################################
+####                                            ####
+####                                            ####
+####                EG data                     ####
+####                                            ####
+####                                            ####
+####################################################
+
+print("obtain eg data")
+
+print("open first browser IE")
+sp.Popen(r'"C:\Program Files\Internet Explorer\IEXPLORE.EXE" www.google.com')
+time.sleep(3)
+print("open second browser IE")
+sp.call("C:\Program Files\Internet Explorer\iexplore.exe")
+time.sleep(3)
+pag.click(845,505) # click ed username 
+pag.write(egusername)
+pag.click(845,565) # click the eg password field
+pag.write(egadminpasword)
+pag.click(1035,625) # click the eg login button
+time.sleep(5)
+# pag.locateOnScreen('egmonitorbtn.PNG',confidence=0.8)
+# pag.click(pag.locateOnScreen('egmonitorbtn.PNG',confidence=0.5,grayscale=True)) # eg monitor button click 
+pag.click(305,105) # eg monitor button click
+time.sleep(5)
+# pag.click(pag.locateOnScreen('nimblestorage.PNG',confidence=0.8)) # click nimble storage in home screen
+pag.click(320,345) # click nimble storage in home screen
+time.sleep(5)
+# pag.click(pag.locateOnScreen('nimb1.PNG',confidence=0.8)) # click nimble1 icon
+pag.click(300,255) # click nimble1 icon
+time.sleep(5)
+pag.click(430,295) # click nimble system 
+time.sleep(3)
+pag.click(320,325) # click nimble io perf 
+time.sleep(1)
+pag.screenshot('e:\\dailyhostdata\\nimble1.png', region=(0,0,1920,1080)) # take screenshot
+time.sleep(1)
+pag.click(1875,150) # click back
+time.sleep(3)
+# pag.click(pag.locateOnScreen('nimb2.PNG',confidence=0.9)) # click nimble1 icon
+pag.click(530,255) # click nimble2 icon
+time.sleep(5)
+pag.click(430,295) # click nimble system 
+time.sleep(3)
+pag.click(320,325) # click nimble io perf 
+time.sleep(5)
+pag.screenshot('e:\\dailyhostdata\\nimble2.png', region=(0,0,1920,1080)) # take screenshot
+time.sleep(2)
+# pag.click(pag.locateOnScreen('eglogout.PNG',confidence=0.9)) # logoff
+pag.click(1892,103) # Logoff 
+time.sleep(2)
+
+#endregion
+
+#region email 
 ####################################################
 ####                                            ####
 ####                                            ####
@@ -486,7 +638,9 @@ with smtplib.SMTP('vSTMAIL1.london.sprout.local',25) as server:
 
 print("email Sent!")
 
+#endregion
 
 
-
+end = time.time()
+print(end - start)
 

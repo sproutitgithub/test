@@ -11,12 +11,12 @@ print(key)
 
 f = Fernet(key)
 
-with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\enc_pass.txt', 'rb') as encrypted_file:
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\enc_outlookemailpass.txt', 'rb') as encrypted_file:
     encrypted = encrypted_file.read()
 
 decrypted = f.decrypt(encrypted)
 
-with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\dec_pass.txt', 'wb') as decrypted_file:
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\dec_outlookemailpass.txt', 'wb') as decrypted_file:
     decrypted_file.write(decrypted)
 
 

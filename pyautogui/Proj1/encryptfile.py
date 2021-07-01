@@ -13,12 +13,12 @@ print(key)
 
 f = Fernet(key)
 
-with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\pass.txt', 'rb') as orig_pass:
+with open(r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\egadminpass.txt', 'rb') as orig_pass:
     original = orig_pass.read()
 
 encrypted = f.encrypt(original)
 
-with open (r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\enc_pass.txt', 'wb') as encrypted_file:
+with open (r'\\vscdevops\\buildconfigurations\\Sprout Cloud\\Configs\\Secure\\pyauto\\enc_egadminpass.txt', 'wb') as encrypted_file:
     encrypted_file.write(encrypted)
 
 ###end encrypt file 
